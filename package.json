@@ -1,6 +1,6 @@
 {
   "name": "animate-scroll-to.js",
-  "version": "0.1.4",
+  "version": "0.1.5",
   "description": "Simple plugin for scroll smoothly.",
   "main": "src/animate-scroll-to.js",
   "scripts": {
