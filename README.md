@@ -23,7 +23,7 @@ or add it to your page
 
 ## API
 ```javascript
-animateScrollTo(target[, options][, callback]);
+var scroller = animateScrollTo(target[, options][, callback]);
 ```
 
 ### target
@@ -37,6 +37,17 @@ animateScrollTo(target[, options][, callback]);
 - `speed: Number` - px per second (px/s) of animation.
 
 **NOTE:** if `speed` specifies `duration` will be ignored.
+
+### scroller
+- `start`
+- `pause`
+- `resume`
+- `isPaused`
+
+
+## TODO
+- [] autoStart
+- [] change speed
 
 
 ## License

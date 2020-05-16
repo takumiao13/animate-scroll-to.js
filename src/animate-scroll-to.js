@@ -8,7 +8,8 @@
   // ==
   var DEFAULTS = {
     duration: 468,
-    animate: true
+    animate: true,
+    autoStart: true
   };
   
   var shorthand = {
@@ -58,9 +59,12 @@
 
     options = options || {}
 
+    var ctx;
+
     var container = options.container || window,
         duration = options.duration || DEFAULTS.duration,
         speed = options.speed,
+        autoStart = isDefined(options.animate) ? options.autoStart : DEFAULTS.autoStart,
         animate = isDefined(options.animate) ? options.animate : DEFAULTS.animate;
 
     var paused = true,
@@ -79,9 +83,7 @@
 
     distance = endTop - startTop;
 
-    console.log(scrollBottom(container));
-
-    start();
+    if (autoStart) start();
 
     // scroller instance
     return {
@@ -93,6 +95,10 @@
 
       resume: function() {
         if (paused) start(getStartTop(container));
+      },
+
+      speed: function(value) {
+        speed = value;
       },
 
       isPaused: function() {
@@ -114,7 +120,7 @@
       _duration = (_distance / distance) * duration;
       paused = false;
 
-      step({
+      ctx = {
         container: container,
         startTime: +new Date,
         startTop: _startTop,
@@ -124,7 +130,9 @@
         animate: animate,
         speed: speed,
         callback: callback
-      });
+      };
+
+      step(ctx);
     }
 
     function step(ctx) {
@@ -135,8 +143,15 @@
           elapsed = now - ctx.startTime;
 
       // calculate the position.
+      // speed cause
       if (ctx.speed) {
-        scrollTop = ctx.startTop + elapsed / 1000 * ctx.speed;
+        if (ctx.distance > 0) {
+          scrollTop = ctx.startTop + elapsed / 1000 * ctx.speed;
+        } else {
+          scrollTop = ctx.startTop - elapsed / 1000 * ctx.speed;
+        }
+
+      // duration case
       } else {
         var ratio = elapsed / ctx.duration;
         scrollTop = ctx.startTop + (ctx.distance * ratio);
