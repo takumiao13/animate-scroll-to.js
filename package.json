@@ -1,0 +1,18 @@
+{
+  "name": "animate-scroll-to.js",
+  "version": "0.1.4",
+  "description": "Simple plugin for scroll smoothly.",
+  "main": "src/animate-scroll-to.js",
+  "scripts": {
+    "build": "./node_modules/.bin/gulp"
+  },
+  "author": "takumiao13",
+  "license": "MIT",
+  "devDependencies": {
+    "gulp": "^4.0.2",
+    "gulp-clean": "^0.4.0",
+    "gulp-concat": "^2.6.1",
+    "gulp-sourcemaps": "^2.6.5",
+    "gulp-uglify": "^3.0.2"
+  }
+}
